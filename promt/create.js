@@ -1,5 +1,5 @@
-const {writeFile} = require(fs);
-const {shape} = require('./shape');
+const writeFile = require(fs);
+const shape = require('./shape');
 
 function createLogo(data) {
 
