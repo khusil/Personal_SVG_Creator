@@ -1,18 +1,36 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const SVG = require('./lib/svg');
 
-const question = require('./promt/promt');
-const shape = require('./promt/shape');
+const questions = [
+    {
+        name:'characters',
+        type: 'input',
+        message:'please enter a minimum of 3 characters',
 
-prompt.question.then(shape);
-
-function charslenght(response) {
-    if (!response){
-        return 'please enter a response';
+    },
+    {
+        name : 'charColor',
+        type: 'input',
+        message:'please enter a color or key',
+    },
+    {
+        name: 'shape',
+        tpye: 'list',
+        choices: ['square', 'circle', 'triangle',]
+    },
+    {
+        name: 'shapeColor',
+        type: 'input',
+        message:'please enter a color or key',
     }
-    if (response.lenght < 3){
-        return 'please enter a minimum of three characters';
-    }
-    return true;
+]
+
+
+async function init() {
+    const input = await inquirer.prompt(questions);
+    const SVG = SVG(input)
+    fs.writeFile(logo.svg, SVG, err => err ? console.error(err) : console.log('logo generated'))
 }
-        
+
+init();
